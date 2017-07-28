@@ -29,6 +29,7 @@ var chart = d3.select(".chart")
 
 d3.csv("data.csv", type, function(error, data) {
   y.domain([0, d3.max(data, function(d) { return d.pethouseholds; })]);
+  x.domain(data.map(function(d) { return d.location; }));
 
   var barWidth = width / data.length;
 
