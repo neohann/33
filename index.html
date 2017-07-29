@@ -36,7 +36,7 @@
 <script>
 
 var margin = {top: 20, right: 30, bottom: 30, left: 40},
-    width = 1600 - margin.left - margin.right,
+    width = 1200 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 var x = d3.scale.ordinal()
@@ -109,6 +109,30 @@ data = data.map(function(d){
     d["pethouseholds"] = +d["pethouseholds"]; 
     return d;
 });
+
+
+chart.append("text")
+      .attr("transform",
+            "translate(" + (width/2-110) + " ," + 
+                           (height + margin.top - 340) + ")")
+      .attr("y", 0 - margin.left)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .attr("class", "annotation")
+      .style("text-anchor", "middle")
+      .text("High populated state"); 
+  
+
+ chart.append("text")
+      .attr("transform",
+            "translate(" + (width+80) + " ," + 
+                           (height + margin.top + 30) + ")")
+      .attr("y", 0 - margin.left)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .attr("class", "annotation")
+      .style("text-anchor", "middle")
+      .text("Low populated states"); 
 
 svg.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
