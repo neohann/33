@@ -57,8 +57,14 @@ d3.csv("data.csv", type, function(error, data) {
   chart.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
-
+      .call(xAxis)
+      .selectAll("text")
+        .attr("y", 0)
+        .attr("x", 9)
+        .attr("dy", ".35em")
+        .attr("transform", "rotate(90)")
+        .style("text-anchor", "start");
+  
   chart.append("g")
       .attr("class", "y axis")
       .call(yAxis);
@@ -70,8 +76,8 @@ d3.csv("data.csv", type, function(error, data) {
       .attr("x", function(d) { return x(d.location); })
       .attr("y", function(d) { return y(d.pethouseholds); })
       .attr("height", function(d) { return height - y(d.pethouseholds); })
-      .attr("width", x.rangeBand())
-      .attr("transform", "rotate(90)");
+      .attr("width", x.rangeBand());
+      
 });
 
 function type(d) {
