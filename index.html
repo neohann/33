@@ -61,6 +61,12 @@ var chart = d3.select(".chart")
 
 var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
+var svg = d3.select("body")
+    .append("svg")
+    .attr("width", "100%")
+    .attr("height", "100%")
+    .attr("viewBox", "0 0 " + width + " " + height);
+
 d3.csv("data.csv", type, function(error, data) {
   x.domain(data.map(function(d) { return d.location; }));
   y.domain([0, d3.max(data, function(d) { return d.pethouseholds; })]);
@@ -104,5 +110,21 @@ function type(d) {
   return d;
 }
 
+svg.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    .selectAll(".textlabel")
+    .data(data)
+    .enter()
+    .append("text")
+    .attr("class", "textlabel")
+    .attr("x", function(d){ return xScale(d["location"]) + (xScale.rangeBand()/2); })
+    .attr("y", function(d){ return yScale(d["pethouseholds"]) - 3; })
+    .text(function(d){ return d3.format("$,")(d["pethouseholds"]); });
+
+svg.append("g")
+    .attr("transform", "translate(" + (width/2) + ", 15)")
+    .append("text")
+    .text("Stock Wealth by Age")
+    .style({"text-anchor":"middle", "font-family":"Arial", "font-weight":"800"});    
 
 </script>
