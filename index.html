@@ -35,12 +35,12 @@
 <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script>
 
-var margin = {top: 20, right: 30, bottom: 30, left: 40},
+var margin = {top: 20, right: 30, bottom: 30, left: 100},
     width = 1200 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 var x = d3.scale.ordinal()
-    .rangeRoundBands([40, width], .1);
+    .rangeRoundBands([0, width], .1);
 
 var y = d3.scale.linear()
     .range([height, 0]);
