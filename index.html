@@ -105,10 +105,7 @@ d3.csv("data.csv", type, function(error, data) {
       
 });
 
-data = data.map(function(d){ 
-    d["pethouseholds"] = +d["pethouseholds"]; 
-    return d;
-});
+
 
 
 chart.append("text")
