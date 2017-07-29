@@ -105,11 +105,6 @@ d3.csv("data.csv", type, function(error, data) {
       
 });
 
-function type(d) {
-  d.pethouseholds = +d.pethouseholds; // coerce to number
-  return d;
-}
-
 svg.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     .selectAll(".textlabel")
@@ -125,6 +120,13 @@ svg.append("g")
     .attr("transform", "translate(" + (width/2) + ", 15)")
     .append("text")
     .text("Stock Wealth by Age")
-    .style({"text-anchor":"middle", "font-family":"Arial", "font-weight":"800"});    
+    .style({"text-anchor":"middle", "font-family":"Arial", "font-weight":"800"});
+
+function type(d) {
+  d.pethouseholds = +d.pethouseholds; // coerce to number
+  return d;
+}
+
+    
 
 </script>
