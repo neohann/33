@@ -176,6 +176,38 @@ function type(d) {
 
 </script>
 
+// 22
+<style>
+
+.bar {
+  fill: steelblue;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+.toolTip {
+  position: absolute;
+  display: none;
+  min-width: 80px;
+  height: auto;
+  background: none repeat scroll 0 0 #ffffff;
+  border: 1px solid #6F257F;
+  padding: 14px;
+  text-align: center;
+}
+</style>
 <svg class="chart"></svg>
 <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script>
