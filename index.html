@@ -70,7 +70,8 @@ d3.csv("data.csv", type, function(error, data) {
       .attr("x", function(d) { return x(d.location); })
       .attr("y", function(d) { return y(d.pethouseholds); })
       .attr("height", function(d) { return height - y(d.pethouseholds); })
-      .attr("width", x.rangeBand());
+      .attr("width", x.rangeBand())
+      .attr("transform", "rotate(90)");
 });
 
 function type(d) {
