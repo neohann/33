@@ -113,40 +113,14 @@ chart.append("text")
             "translate(" + (width/2-110) + " ," + 
                            (height + margin.top - 340) + ")")
       .attr("y", 0 - margin.left)
-      .attr("x",0 - (height / 2))
+      .attr("x",0 - (height / 3))
       .attr("dy", "1em")
       .attr("class", "annotation")
       .style("text-anchor", "middle")
-      .text("High populated state"); 
+      .text("Top 3 Pet Households States: California, Texas and Florida"); 
   
 
- chart.append("text")
-      .attr("transform",
-            "translate(" + (width+80) + " ," + 
-                           (height + margin.top + 30) + ")")
-      .attr("y", 0 - margin.left)
-      .attr("x",0 - (height / 2))
-      .attr("dy", "1em")
-      .attr("class", "annotation")
-      .style("text-anchor", "middle")
-      .text("Low populated states"); 
 
-svg.append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-    .selectAll(".textlabel")
-    .data(data)
-    .enter()
-    .append("text")
-    .attr("class", "textlabel")
-    .attr("x", function(d){ return xScale(d["location"]) + (xScale.rangeBand()/2); })
-    .attr("y", function(d){ return yScale(d["pethouseholds"]) - 3; })
-    .text(function(d){ return d3.format("$,")(d["pethouseholds"]); });
-
-svg.append("g")
-    .attr("transform", "translate(" + (width/2) + ", 15)")
-    .append("text")
-    .text("Stock Wealth by Age")
-    .style({"text-anchor":"middle", "font-family":"Arial", "font-weight":"800"});
 
 function type(d) {
   d.pethouseholds = +d.pethouseholds; // coerce to number
