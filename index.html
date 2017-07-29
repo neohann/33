@@ -20,7 +20,16 @@
 .x.axis path {
   display: none;
 }
-
+.toolTip {
+  position: absolute;
+  display: none;
+  min-width: 80px;
+  height: auto;
+  background: none repeat scroll 0 0 #ffffff;
+  border: 1px solid #6F257F;
+  padding: 14px;
+  text-align: center;
+}
 </style>
 <svg class="chart"></svg>
 <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -50,6 +59,8 @@ var chart = d3.select(".chart")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+var tooltip = d3.select("body").append("div").attr("class", "toolTip");
+
 d3.csv("data.csv", type, function(error, data) {
   x.domain(data.map(function(d) { return d.location; }));
   y.domain([0, d3.max(data, function(d) { return d.pethouseholds; })]);
@@ -76,7 +87,15 @@ d3.csv("data.csv", type, function(error, data) {
       .attr("x", function(d) { return x(d.location); })
       .attr("y", function(d) { return y(d.pethouseholds); })
       .attr("height", function(d) { return height - y(d.pethouseholds); })
-      .attr("width", x.rangeBand());
+      .attr("width", x.rangeBand())
+      .on("mousemove", function(d){
+            tooltip
+              .style("left", d3.event.pageX - 50 + "px")
+              .style("top", d3.event.pageY - 70 + "px")
+              .style("display", "inline-block")
+              .html((d.pethouseholds) + "<br>" + (d.location));
+        })
+        .on("mouseout", function(d){ tooltip.style("display", "none");});
       
 });
 
@@ -85,11 +104,5 @@ function type(d) {
   return d;
 }
 
-svg.append("text")
-        .attr("x", (width / 2))             
-        .attr("y", 0 - (margin.top / 2))
-        .attr("text-anchor", "middle")  
-        .style("font-size", "16px") 
-        .style("text-decoration")  
-        .text("Number of Pet Households");
+
 </script>
