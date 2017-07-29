@@ -105,7 +105,12 @@ d3.csv("data.csv", type, function(error, data) {
       
 });
 
-chart.append("g")
+data = data.map(function(d){ 
+    d["pethouseholds"] = +d["pethouseholds"]; 
+    return d;
+});
+
+svg.append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
     .selectAll(".textlabel")
     .data(data)
@@ -116,7 +121,7 @@ chart.append("g")
     .attr("y", function(d){ return yScale(d["pethouseholds"]) - 3; })
     .text(function(d){ return d3.format("$,")(d["pethouseholds"]); });
 
-chart.append("g")
+svg.append("g")
     .attr("transform", "translate(" + (width/2) + ", 15)")
     .append("text")
     .text("Stock Wealth by Age")
