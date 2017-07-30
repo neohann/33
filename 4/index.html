@@ -191,7 +191,6 @@ function type(d) {
 
 </script>
 
-//22 重叠了
 <style>
 
 .bar {
@@ -226,7 +225,7 @@ function type(d) {
 
 
 
-
+<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
 <script>
 
@@ -249,7 +248,7 @@ var yAxis = d3.svg.axis()
     .orient("left");
 
 var chart2 = d3.select("body")
-.append("svg")
+    .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -263,9 +262,9 @@ var svg = d3.select("body")
     .attr("height", "100%")
     .attr("viewBox", "0 0 " + width + " " + height);
 
-d3.csv("dog.csv", type, function(error, data) {
+d3.csv("data.csv", type, function(error, data) {
   x.domain(data.map(function(d) { return d.location; }));
-  y.domain([0, d3.max(data, function(d) { return d.dog; })]);
+  y.domain([0, d3.max(data, function(d) { return d.pethouseholds; })]);
 
   chart2.append("g")
       .attr("class", "x axis")
@@ -287,15 +286,15 @@ d3.csv("dog.csv", type, function(error, data) {
     .enter().append("rect")
       .attr("class", "bar")
       .attr("x", function(d) { return x(d.location); })
-      .attr("y", function(d) { return y(d.dog); })
-      .attr("height", function(d) { return height - y(d.dog); })
+      .attr("y", function(d) { return y(d.pethouseholds); })
+      .attr("height", function(d) { return height - y(d.pethouseholds); })
       .attr("width", x.rangeBand())
       .on("mousemove", function(d){
             tooltip
               .style("left", d3.event.pageX - 50 + "px")
               .style("top", d3.event.pageY - 70 + "px")
               .style("display", "inline-block")
-              .html((d.location)+ "<br>" + (d.dog) );
+              .html((d.location)+ "<br>" + (d.pethouseholds) );
         })
         .on("mouseout", function(d){ tooltip.style("display", "none");});
       
@@ -308,7 +307,7 @@ d3.csv("dog.csv", type, function(error, data) {
       .attr("x",0 - (height / 2))
       .attr("dy", "1em")
       .style("text-anchor", "middle")
-      .text("Dog Population (in 1000)"); 
+      .text("Number of Pet Households (in 1000)"); 
 
 
 chart2.append("text")
@@ -320,7 +319,7 @@ chart2.append("text")
       .attr("dy", "1em")
       .attr("class", "annotation")
       .style("text-anchor", "middle")
-      .text("Top 3 Dog populations: California, Texas and Florida"); 
+      .text("Top 3 Pet Households States: California, Texas and Florida"); 
   
 
 
@@ -329,6 +328,10 @@ function type(d) {
   d.pethouseholds = +d.pethouseholds; // coerce to number
   return d;
 }
+
+  
+
+    
 
 </script>
 </body></html>
