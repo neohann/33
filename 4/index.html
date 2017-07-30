@@ -215,9 +215,9 @@ var chart2 = d3.select(".chart2")
 var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
 
-d3.csv("data.csv", type, function(error, data) {
+d3.csv("dog.csv", type, function(error, data) {
   x.domain(data.map(function(d) { return d.location; }));
-  y.domain([0, d3.max(data, function(d) { return d.pethouseholds; })]);
+  y.domain([0, d3.max(data, function(d) { return d.dog; })]);
 
   chart2.append("g")
       .attr("class", "x axis")
@@ -239,15 +239,15 @@ d3.csv("data.csv", type, function(error, data) {
     .enter().append("rect")
       .attr("class", "bar")
       .attr("x", function(d) { return x(d.location); })
-      .attr("y", function(d) { return y(d.pethouseholds); })
-      .attr("height", function(d) { return height - y(d.pethouseholds); })
+      .attr("y", function(d) { return y(d.dog); })
+      .attr("height", function(d) { return height - y(d.dog); })
       .attr("width", x.rangeBand())
       .on("mousemove", function(d){
             tooltip
               .style("left", d3.event.pageX - 50 + "px")
               .style("top", d3.event.pageY - 70 + "px")
               .style("display", "inline-block")
-              .html((d.location)+ "<br>" + (d.pethouseholds) );
+              .html((d.location)+ "<br>" + (d.dog) );
         })
         .on("mouseout", function(d){ tooltip.style("display", "none");});
       
@@ -260,7 +260,7 @@ d3.csv("data.csv", type, function(error, data) {
       .attr("x",0 - (height / 2))
       .attr("dy", "1em")
       .style("text-anchor", "middle")
-      .text("Number of Pet Households (in 1000)"); 
+      .text("Number of Dogs (in 1000)"); 
 
 
 chart2.append("text")
@@ -272,13 +272,13 @@ chart2.append("text")
       .attr("dy", "1em")
       .attr("class", "annotation")
       .style("text-anchor", "middle")
-      .text("Top 3 Pet Households States: California, Texas and Florida"); 
+      .text("Top 3 Dog population States: California, Texas and Florida"); 
   
 
 
 
 function type(d) {
-  d.pethouseholds = +d.pethouseholds; // coerce to number
+  d.dog = +d.dog; // coerce to number
   return d;
 }
 
