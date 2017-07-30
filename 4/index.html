@@ -110,11 +110,9 @@ var chart = d3.select("body")
 
 var tooltip = d3.select("body").append("div").attr("class", "toolTip");
 
-var svg = d3.select("body")
-    .append("svg")
-    .attr("width", "100%")
-    .attr("height", "100%")
-    .attr("viewBox", "0 0 " + width + " " + height);
+
+
+
 
 d3.csv("data.csv", type, function(error, data) {
   x.domain(data.map(function(d) { return d.location; }));
