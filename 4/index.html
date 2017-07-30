@@ -80,7 +80,7 @@
 </style>
 
 
-<svg class="chart"></svg>
+
 <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
 
 <script>
@@ -103,7 +103,8 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left");
 
-var chart = d3.select(".chart")
+var chart = d3.select("body")
+    .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
