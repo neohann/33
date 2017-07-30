@@ -37,6 +37,7 @@
           </div>
           <p class="lead">
                           Now you know that the top three pet households are California, Texas and Florida. Here are some charts for you to dig out more. You can see the ranking of all states in the first chart, the dogs and cats population in the second chart and the percentage of pet households of each state in the third chart.  Enjoy your exploration! </p>
+          </div>
 
 <style>
 
@@ -69,8 +70,11 @@
   text-align: center;
 }
 </style>
+
+
 <svg class="chart"></svg>
 <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
 <script>
 
 var margin = {top: 20, right: 30, bottom: 70, left: 70},
@@ -172,11 +176,12 @@ function type(d) {
   return d;
 }
 
+  
+
     
 
 </script>
 
-// 22
 <style>
 
 .bar {
@@ -208,12 +213,15 @@ function type(d) {
   text-align: center;
 }
 </style>
+
+
 <svg class="chart"></svg>
 <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
 <script>
 
 var margin = {top: 20, right: 30, bottom: 70, left: 70},
-    width = 1700 - margin.left - margin.right,
+    width = 1200 - margin.left - margin.right,
     height = 550 - margin.top - margin.bottom;
 
 var x = d3.scale.ordinal()
@@ -310,8 +318,6 @@ function type(d) {
   d.pethouseholds = +d.pethouseholds; // coerce to number
   return d;
 }
-
-    
 
 </script>
 </body></html>
